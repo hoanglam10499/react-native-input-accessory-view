@@ -1,7 +1,7 @@
 {
   "name": "react-native-input-accessory-view",
   "version": "0.1.0",
-  "description": "ndefined",
+  "description": "an universal input accessory view for Android and iOS",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -33,8 +33,9 @@
   },
   "keywords": [
     "react-native",
-    "ios",
-    "android"
+    "input-accessory-view",
+    "input-accessory-view android",
+    "input-accessory-view-ios"
   ],
   "repository": "https://github.com/hoanglam10499/react-native-input-accessory-view",
   "author": "Hoang Lam <hoanglam10499@gmail.com> (https://github.com/hoanglam10499)",
@@ -69,7 +70,9 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-safe-area-context": "*",
+    "@react-native-community/hooks": "*"
   },
   "jest": {
     "preset": "react-native",
