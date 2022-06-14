@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import InputAccessoryView from '../../src';
+import InputAccessoryView from '../../';
 
 const App = (props) => {
   const [isOpen, setisOpen] = React.useState(false);

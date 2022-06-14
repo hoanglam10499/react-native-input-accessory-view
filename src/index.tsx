@@ -4,7 +4,7 @@ import { Keyboard, Platform } from 'react-native';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import { useLayout } from '@react-native-community/hooks';
 
-import { useSharedValue } from 'react-native-reanimated';
+import { useSharedValue, EasingFunctionFactory } from 'react-native-reanimated';
 
 import Animated, { withTiming } from 'react-native-reanimated';
 import { useAnimatedStyle } from 'react-native-reanimated';
@@ -12,12 +12,19 @@ import { useAnimatedStyle } from 'react-native-reanimated';
 const KEY_SHOW = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
 const KEY_HIDE = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
 
+interface InputAccessoryViewProps {
+  animationInConfig?: { duration: number; easing: EasingFunctionFactory };
+  animationOutConfig?: { duration: number; easing: EasingFunctionFactory };
+  isVisible?: boolean;
+  children?: React.ReactChild;
+}
+
 const InputAccessoryView = ({
   animationInConfig,
   animationOutConfig,
   children,
   isVisible,
-}) => {
+}: InputAccessoryViewProps) => {
   const { height } = useSafeAreaFrame();
   const { onLayout, ...layout } = useLayout();
 
