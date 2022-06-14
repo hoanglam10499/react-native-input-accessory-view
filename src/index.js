@@ -10,8 +10,8 @@ const KEY_HIDE = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
 const InputAccessoryView = ({
   animationInConfig = { duration: 200 },
   animationOutConfig = { duration: 400 },
-  renderView = () => {},
-  isOpen = false,
+  children,
+  isVisible  = false,
 }) => {
   const { height } = useSafeAreaFrame();
   const { onLayout, ...layout } = useLayout();
@@ -58,10 +58,10 @@ const InputAccessoryView = ({
     <Animated.View
       style={[
         StyleSheet.absoluteFill,
-        { transform: [{ translateY: !isOpen ? height : hAnim }] },
+        { transform: [{ translateY: !isVisible ? height : hAnim }] },
       ]}
     >
-      <View onLayout={onLayout}>{renderView()}</View>
+      <View onLayout={onLayout}>{children}</View>
     </Animated.View>
   );
 };

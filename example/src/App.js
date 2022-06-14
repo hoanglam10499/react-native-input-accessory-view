@@ -6,7 +6,7 @@ import InputAccessoryView from '../../src';
 const App = (props) => {
   const [isOpen, setisOpen] = React.useState(false);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <View
         style={{
           height: 30,
@@ -33,23 +33,18 @@ const App = (props) => {
       >
         <TextInput placeholder="Normal" style={{ flex: 1, padding: 0 }} />
       </View>
-      <InputAccessoryView
-        renderView={() => {
-          return (
-            <View
-              style={{
-                backgroundColor: 'rgba(0,0,0,0.5)',
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Text>Input Accessory View</Text>
-            </View>
-          );
-        }}
-        isOpen={isOpen}
-      />
+      <InputAccessoryView isVisible={isOpen}>
+        <View
+          style={{
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            height: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Text>Input Accessory View</Text>
+        </View>
+      </InputAccessoryView>
     </SafeAreaView>
   );
 };
