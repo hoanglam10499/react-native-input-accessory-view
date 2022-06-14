@@ -1,4 +1,10 @@
-# react-native-input-accessory-view
+![React Native Input Accessory View](background.jpg)
+## React Native Input Accessory View
+
+[![Version][version-badge]][package]
+
+[version-badge]: https://img.shields.io/npm/v/react-native-input-accessory-view
+[package]: https://www.npmjs.com/package/react-native-input-accessory-view
 
 An universal [input accessory view](https://reactnative.dev/docs/inputaccessoryview) for Android and iOS
 
