@@ -1,17 +1,22 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Keyboard, Platform, Animated } from 'react-native';
+import { Keyboard, Platform } from 'react-native';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
 import { useLayout } from '@react-native-community/hooks';
+
+import { useSharedValue } from 'react-native-reanimated';
+
+import Animated, { withTiming } from 'react-native-reanimated';
+import { useAnimatedStyle } from 'react-native-reanimated';
 
 const KEY_SHOW = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
 const KEY_HIDE = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
 
 const InputAccessoryView = ({
-  animationInConfig = { duration: 200 },
-  animationOutConfig = { duration: 400 },
+  animationInConfig,
+  animationOutConfig,
   children,
-  isVisible  = false,
+  isVisible,
 }) => {
   const { height } = useSafeAreaFrame();
   const { onLayout, ...layout } = useLayout();
@@ -27,25 +32,17 @@ const InputAccessoryView = ({
     valueRef.current = layout?.height;
   }, [layout]);
 
-  const hAnim = React.useRef(new Animated.Value(height)).current;
-  console.log('first');
+  const hAnim = useSharedValue(height);
 
   React.useEffect(() => {
     const evtShowKeyBoard = Keyboard.addListener(KEY_SHOW, (e) => {
-      Animated.timing(hAnim, {
-        toValue: heightRef.current - e.endCoordinates.height - valueRef.current,
-        duration: animationInConfig.duration,
-        easing: animationInConfig.easing,
-        useNativeDriver: true,
-      }).start();
+      hAnim.value = withTiming(
+        heightRef.current - e.endCoordinates.height - valueRef.current,
+        animationInConfig
+      );
     });
     const evtHideKeyBoard = Keyboard.addListener(KEY_HIDE, () => {
-      Animated.timing(hAnim, {
-        toValue: heightRef.current,
-        duration: animationOutConfig.duration,
-        easing: animationOutConfig.easing,
-        useNativeDriver: true,
-      }).start();
+      hAnim.value = withTiming(heightRef.current, animationOutConfig);
     });
 
     return () => {
@@ -54,13 +51,19 @@ const InputAccessoryView = ({
     };
   }, []);
 
+  const animationStyles = useAnimatedStyle(
+    () => ({
+      transform: [
+        {
+          translateY: isVisible ? hAnim.value : heightRef.current,
+        },
+      ],
+    }),
+    [isVisible]
+  );
+
   return (
-    <Animated.View
-      style={[
-        StyleSheet.absoluteFill,
-        { transform: [{ translateY: !isVisible ? height : hAnim }] },
-      ]}
-    >
+    <Animated.View style={[StyleSheet.absoluteFill, animationStyles]}>
       <View onLayout={onLayout}>{children}</View>
     </Animated.View>
   );

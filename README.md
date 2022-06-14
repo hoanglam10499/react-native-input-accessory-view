@@ -5,10 +5,10 @@ An universal [input accessory view](https://reactnative.dev/docs/inputaccessoryv
 ## Installation
 
 ```sh
-yarn add react-native-input-accessory-view react-native-safe-area-context
+yarn add react-native-input-accessory-view react-native-safe-area-context react-native-reanimated
 ```
 
-If you don't have those already, you will also need to install the [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context)
+If you don't have those already, you will also need to install the [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) and [react-native-reanimated v2](https://github.com/software-mansion/react-native-reanimated)
 
 ## Usage
 
@@ -75,7 +75,6 @@ object
 Config for the hide animation
 
 Defaults to `{ duration: 400 }`
-
 
 ## License
 
