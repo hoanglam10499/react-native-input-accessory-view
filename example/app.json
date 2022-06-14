@@ -1,0 +1,22 @@
+{
+  "name": "react-native-input-accessory-view-example",
+  "displayName": "InputAccessoryView Example",
+  "expo": {
+    "name": "react-native-input-accessory-view-example",
+    "slug": "react-native-input-accessory-view-example",
+    "description": "Example app for react-native-input-accessory-view",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
