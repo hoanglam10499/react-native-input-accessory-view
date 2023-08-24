@@ -11,6 +11,7 @@ function index() {
       </View>
       <InputAccessoryView
         spaceHeight={100}
+        extraHeight={0}
         renderView={() => (
           <View
             style={{

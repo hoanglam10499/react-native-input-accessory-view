@@ -15,7 +15,12 @@ An universal [InputAccessoryView](https://reactnative.dev/docs/inputaccessoryvie
 yarn add react-native-input-accessory-view
 ```
 
-If you don't have those already, you will also need to install the [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) and [react-native-reanimated v2](https://github.com/software-mansion/react-native-reanimated)
+If you don't have those already, you will also need to install the [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) and [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
+
+```sh
+yarn add react-native-reanimated
+yarn add react-native-safe-area-context@4.7.1
+```
 
 ## Usage
 
@@ -24,102 +29,34 @@ import InputAccessoryView from 'react-native-input-accessory-view';
 
 // ...
 
-const [isOpen, setisOpen] = React.useState(false);
 return (
-  <>
-    <TextInput
-      onFocus={() => setisOpen(true)}
-      onBlur={() => setisOpen(false)}
-    />
-    <InputAccessoryView isVisible={isOpen}>
-      <View
-        style={{
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          height: 50,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Text>Input Accessory View</Text>
-      </View>
-    </InputAccessoryView>
-  </>
-);
-
-// ...
-```
-See the [example app](./example/src/App.js) for full usage details.
-
-## With React Navigation Bottom
-
-If `tabBarHideOnKeyboard=true` skip this step
-
-```js
-import InputAccessoryView from 'react-native-input-accessory-view';
-import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs'; // ==> Add import
-
-// ...
-const heightBottom = React.useContext(BottomTabBarHeightContext) ?? 0; // ==> Add line
-
-return (
-  <InputAccessoryView isVisible={isOpen} spacing={heightBottom}> // ==> Add spacing
-    <View
-      style={{
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Text>Input Accessory View</Text>
+  <View style={{ flex: 1 }}>
+    <View style={{ height: 55, backgroundColor: 'blue', width: '100%' }}>
+      <TextInput style={{ flex: 1, padding: 0 }} />
     </View>
-  </InputAccessoryView>
+    <InputAccessoryView
+      spaceHeight={100}
+      extraHeight={0} //? optional
+      renderView={() => (
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'blue',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Text style={{ color: 'red' }}>hello</Text>
+        </View>
+      )}
+    />
+  </View>
 );
 
 // ...
 ```
 
-
-## API
-
-### Props
-
-#### `isVisible`
-
-```ts
-boolean;
-```
-
-Is the only prop you'll really need to make work: you should control this prop value by saving it in your wrapper component state and setting it to `true` or `false` when needed.
-
-#### `animationInConfig`
-
-```ts
-object;
-```
-
-Config for the open animation
-
-Defaults to `{ duration: 200 }`
-
-#### `animationOutConfig`
-
-```ts
-object;
-```
-
-Config for the hide animation
-
-Defaults to `{ duration: 400 }`
-
-#### `spacing`
-
-```ts
-number;
-```
-
-Defaults to `0`
-
+See the [example app](./example/src/App.js) for full usage details.
 
 ## License
 
