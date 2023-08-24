@@ -1,54 +1,33 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
 import InputAccessoryView from '../../';
 
-const App = (props) => {
-  const [isOpen, setisOpen] = React.useState(false);
+function index() {
   return (
-    <SafeAreaView>
-      <View
-        style={{
-          height: 30,
-          width: '100%',
-          borderWidth: 1,
-          borderColor: 'red',
-        }}
-      >
-        <TextInput
-          placeholder="InputAccessoryView"
-          style={{ flex: 1, padding: 0 }}
-          onFocus={() => setisOpen(true)}
-          onBlur={() => setisOpen(false)}
-        />
+    <View style={styles.container}>
+      <View style={{ height: 55, backgroundColor: 'blue', width: '100%' }}>
+        <TextInput style={{ flex: 1, padding: 0 }} />
       </View>
-      <View
-        style={{
-          height: 30,
-          width: '100%',
-          borderWidth: 1,
-          borderColor: 'red',
-          marginTop: 15,
-        }}
-      >
-        <TextInput placeholder="Normal" style={{ flex: 1, padding: 0 }} />
-      </View>
-      <InputAccessoryView isVisible={isOpen}>
-        <View
-          style={{
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            height: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Text>Input Accessory View</Text>
-        </View>
-      </InputAccessoryView>
-    </SafeAreaView>
+      <InputAccessoryView
+        spaceHeight={100}
+        renderView={() => (
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'blue',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Text style={{ color: 'red' }}>hello</Text>
+          </View>
+        )}
+      />
+    </View>
   );
-};
-export default App;
+}
+export default memo(index);
 
 const styles = StyleSheet.create({
   container: {
