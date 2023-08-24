@@ -1,5 +1,5 @@
 import React, { memo, createElement } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import ReAnimated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
@@ -16,12 +16,13 @@ function InputAccessoryView(props: InputAccessoryViewProps): JSX.Element {
   const { spaceHeight = 55, renderView = '', extraHeight = 0 } = props;
   const keyboard = useAnimatedKeyboard();
   const insets = useSafeAreaInsets();
-  const spaceStyle = useAnimatedStyle(
-    () => ({
-      height: keyboard.height.value - insets.bottom + extraHeight,
-    }),
-    [insets.bottom, extraHeight]
-  );
+  const spaceStyle = useAnimatedStyle(() => {
+    if (Platform.OS === 'ios') {
+      return { height: keyboard.height.value + extraHeight };
+    }
+    return { height: keyboard.height.value - insets.bottom + extraHeight };
+  }, [insets.bottom, extraHeight]);
+
   const translateStyle = useAnimatedStyle(() => ({
     opacity: keyboard.height.value === 0 ? 0 : 1,
   }));

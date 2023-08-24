@@ -7,6 +7,17 @@
     "description": "Example app for react-native-input-accessory-view",
     "privacy": "public",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "platforms": [
       "ios",
       "android",
@@ -15,8 +26,14 @@
     "ios": {
       "supportsTablet": true
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

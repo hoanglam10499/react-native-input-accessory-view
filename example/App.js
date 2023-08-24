@@ -1,14 +1,22 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 
-import InputAccessoryView from '../../';
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+  SafeAreaView,
+} from 'react-native-safe-area-context';
 
-function index() {
+import InputAccessoryView from '../';
+
+function Main() {
   return (
-    <View style={styles.container}>
-      <View style={{ height: 55, backgroundColor: 'blue', width: '100%' }}>
-        <TextInput style={{ flex: 1, padding: 0 }} />
-      </View>
+    <>
+      <SafeAreaView style={styles.container}>
+        <View style={{ height: 55, backgroundColor: 'blue', width: '100%' }}>
+          <TextInput style={{ flex: 1, padding: 0 }} />
+        </View>
+      </SafeAreaView>
       <InputAccessoryView
         spaceHeight={100}
         extraHeight={0}
@@ -25,10 +33,18 @@ function index() {
           </View>
         )}
       />
-    </View>
+    </>
   );
 }
-export default memo(index);
+
+function App() {
+  return (
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <Main />
+    </SafeAreaProvider>
+  );
+}
+export default memo(App);
 
 const styles = StyleSheet.create({
   container: {

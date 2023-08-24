@@ -26,14 +26,15 @@ yarn add react-native-safe-area-context@4.7.1
 
 ```js
 import InputAccessoryView from 'react-native-input-accessory-view';
-
 // ...
 
 return (
-  <View style={{ flex: 1 }}>
-    <View style={{ height: 55, backgroundColor: 'blue', width: '100%' }}>
-      <TextInput style={{ flex: 1, padding: 0 }} />
-    </View>
+  <>
+    <SafeAreaView style={styles.container}>
+      <View style={{ height: 55, backgroundColor: 'blue', width: '100%' }}>
+        <TextInput style={{ flex: 1, padding: 0 }} />
+      </View>
+    </SafeAreaView>
     <InputAccessoryView
       spaceHeight={100}
       extraHeight={0} //? optional
@@ -50,7 +51,7 @@ return (
         </View>
       )}
     />
-  </View>
+  </>
 );
 
 // ...
